@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Dimensions,
 } from "react-native";
 import Card from "../components/Card";
 import NumberContainer from "../components/NumberContainer";
@@ -52,8 +53,9 @@ const StartGameScreen = (props) => {
       <Card style={styles.summaryContainer}>
         <BodyText>You selected:</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <MainButton
-          onPress={() => props.onStartGame(selectedNumber)}>START GAME</MainButton>
+        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+          START GAME
+        </MainButton>
       </Card>
     );
   }
@@ -115,12 +117,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   inputContainer: {
-    width: 300,
+    width: "80%",
     maxWidth: "80%",
+    minWidth: 300,
     alignItems: "center",
   },
   button: {
-    width: "40%",
+    // width: "40%",
+    width: Dimensions.get("window").width /4,
   },
   input: {
     width: 50,
