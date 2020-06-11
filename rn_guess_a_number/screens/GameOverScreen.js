@@ -41,7 +41,12 @@ const GameOverScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, alignItems: "center", justifyContent: "center" },
+  screen: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 10,
+  },
   image: { width: "100%", height: "100%" },
   imageContainer: {
     overflow: "hidden",
