@@ -1,7 +1,9 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
-import { CATEGORIES } from "../data/dummy-data.js";
+import { FlatList, StyleSheet, Platform } from "react-native";
+import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTile from "../components/CategoryGridTile";
+import HeaderButton from "../components/HeaderButton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
@@ -22,6 +24,23 @@ const CategoriesScreen = (props) => {
   return (
     <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
   );
+};
+
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Meal Categories",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+          onPress={() => {
+            navData.navigation.toggleDrawer()
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
