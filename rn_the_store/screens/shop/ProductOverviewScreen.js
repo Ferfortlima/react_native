@@ -2,9 +2,9 @@ import React from "react";
 import { FlatList, Platform } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import ProductItem from "../../components/shop/ProductItem";
-import HeaderButton from "../../components/UI/HeaderButton";
 import * as cartActions from "../../store/actions/cart";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../../components/UI/HeaderButton";
 
 const ProductOverviewScreen = (props) => {
   const products = useSelector((state) => state.products.avaliableProducts);
@@ -35,6 +35,19 @@ const ProductOverviewScreen = (props) => {
 ProductOverviewScreen.navigationOptions = (navParam) => {
   return {
     headerTitle: "All Products",
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Menu"
+            iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+            onPress={() => {
+              navParam.navigation.toggleDrawer();
+            }}
+          />
+        </HeaderButtons>
+      );
+    },
     headerRight: () => {
       return (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
